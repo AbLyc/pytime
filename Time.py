@@ -1,33 +1,9 @@
-#AliTiTaniom
-#@Darck_Tm
-#@tmNull
+from pyrogram import Client
 
-from telethon.errors import FloodWaitError
-from telethon import TelegramClient,functions
-from datetime import datetime
-import os
-import pytz
-import aiocron
-import asyncio
-os.system('pkg install python && pip install telethon && pip install asyncio && pip install aiocron && pip install pytz && clear') 
+api_id = 1203921
 
-api_id = "1203921" 
-api_hash="07efbc59f267f50db081a5aff8211fca"
+api_hash = "07efbc59f267f50db081a5aff8211fca"
 
+with Client("my_account", api_id, api_hash) as app:
 
-
-client=TelegramClient("session name", api_id, api_hash)
-
-
-@aiocron.crontab('*/1 * * * *')
-async def clock():
-	ir=pytz.timezone("Asia/Tehran")
-	time=datetime.now(ir).strftime("»%H:%M«")
-	font1="0❶❷❸❹❺❻❼❽❾"
-	font2="𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵"
-	await client(functions.account.UpdateProfileRequest(last_name=time.translate(time.maketrans(font1,font2))))
-
-client.start()
-clock.start()
-client.run_until_disconnected()
-asyncio.get_event_loop().run_forever()
+    app.send_message("me", "Greetings from **Pyrogram**!")
